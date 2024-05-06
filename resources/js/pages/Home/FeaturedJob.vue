@@ -1,6 +1,6 @@
 <template lang="">
     <div class="">
-        <div class="bg-[#d6ecf4] pt-20 px-4 rounded-t-3xl">
+        <div class="bg-[#d6ecf4] pt-20 px-4 rounded-3xl">
             <div class="header">
                 <div class="content flex justify-between items-center">
                     <div class="one">
@@ -14,15 +14,23 @@
         </div>
         <div class="body py-5 mt-4">
             <div class="categories grid grid-cols-12 gap-4">
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
+                <JobCard></JobCard>
             </div>
         </div>
         </div>
     </div>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+import JobCard from './JobCard.vue';
+
+
 </script>
 <style scoped>
     .browseAll{

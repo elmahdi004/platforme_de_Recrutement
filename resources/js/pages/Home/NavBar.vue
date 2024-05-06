@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="flex pt-5 pb-6 px-6 shadow justify-between items-center">
+    <div class="flex pt-5 pb-6 px-6 justify-between items-center shadow-2xl">
         <div class="logo flex">
             <img src="../../../svg/logo.svg" alt="logo" class="max-w-52">
         </div>

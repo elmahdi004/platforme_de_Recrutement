@@ -11,7 +11,8 @@ export default {
         primary:'#1A3454',
         secondary:'#7a8591',
         main:'#1967d2',
-        textPrimary:'#404046'
+        textPrimary:'#404046',
+        screenColor:'#f5f7fc'
       }
     },
   },

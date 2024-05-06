@@ -1,5 +1,5 @@
 <template lang="">
-    <Index></Index>
+    <router-view></router-view>
 </template>
 <script setup>
 import Index from './pages/Home/Index.vue'

@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* For Firefox */
+/* Width */
+::-moz-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-moz-scrollbar-track {
+    background: #f1f1f1;
+  }
+  /* Handle */
+  ::-moz-scrollbar-thumb {
+    background: #d3d3d3;
+    border-radius: 6px;
+  }
+  
+  /* For WebKit */
+  /* Width */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #dfdfdf;
+    border-radius: 6px;
+  }
+  
