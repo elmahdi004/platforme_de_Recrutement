@@ -1,5 +1,5 @@
 <template lang="">
-            <div class="col-span-3 bg-white h-[calc(100vh-112px)] overflow-y-auto border-t-2 border-r-2">
+            <div class="col-span-3 bg-white h-[calc(100vh-112px)] overflow-y-auto">
                 <div class="p-4">
                     <div class="user flex gap-x-8 items-center">
                         <div class="image">
@@ -8,7 +8,7 @@
                         <div>
                             <h3 class="mt-1 font-semibold text-lg">Condidate</h3>
                             <p class="mt-1">New York</p>
-                            <button class="mt-1 text-sm text-white bg-main px-2 py-1 rounded">View Profile</button>
+                            <button class="mt-1 text-sm text-white bg-orange-400 px-2 py-1 rounded">View Profile</button>
                         </div>
                     </div>
                     <div class="navs mt-10">
@@ -25,7 +25,23 @@
                                     <div class="px-3 py-3 rounded-md my-2  duration-200">
                                         <div class="flex items-center">
                                             <i class="fa-regular fa-file-lines text-2xl"></i>
-                                            <p class="ms-3 text-md ">Resume</p>
+                                            <p class="ms-3 text-md ">Profile</p>
+                                        </div>
+                                    </div>
+                                </router-link>
+                                <router-link :to="{name:'myResume'}" class="block text-secondary">
+                                    <div class="px-3 py-3 rounded-md my-2  duration-200">
+                                        <div class="flex items-center">
+                                            <i class="fa-regular fa-file-lines text-2xl"></i>
+                                            <p class="ms-3 text-md ">My Resume</p>
+                                        </div>
+                                    </div>
+                                </router-link>
+                                <router-link :to="{name:'myApplied'}" class="block text-secondary">
+                                    <div class="px-3 py-3 rounded-md my-2  duration-200">
+                                        <div class="flex items-center">
+                                            <i class="fa-regular fa-file-lines text-2xl"></i>
+                                            <p class="ms-3 text-md ">My Applied</p>
                                         </div>
                                     </div>
                                 </router-link>

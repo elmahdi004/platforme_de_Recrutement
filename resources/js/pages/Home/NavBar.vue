@@ -1,5 +1,6 @@
-<template lang="">
-    <div class="flex pt-5 pb-6 px-6 justify-between items-center shadow-2xl">
+<template>
+    <div class="py-2 z-20 shadow-md sticky top-0">
+        <div class="navbar flex pt-5 pb-4 px-6 justify-between items-center">
         <div class="logo flex">
             <img src="../../../svg/logo.svg" alt="logo" class="max-w-52">
         </div>
@@ -29,7 +30,7 @@
             </div>
             <div class="action mx-3">
                 <button class="bg-blue-900 text-white font-medium rounded-md px-4 py-3">
-                    Add job
+                    <router-link :to="{name:'statistics'}">Add Job</router-link>
                 </button>
             </div>
             <div class="action mx-3 cursor-pointer">
@@ -37,12 +38,15 @@
             </div> 
         </div>
     </div>
+    </div>
 </template>
 <script>
 export default {
     
 }
 </script>
-<style lang="">
-    
+<style scoped>
+/* .navbar{
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
+} */
 </style>
