@@ -13,18 +13,23 @@
         </div>
         <div class="body py-5 mt-4">
             <div class="categories grid grid-cols-12 gap-4">
-                    <CategoryCard title="Marketing" icon=""></CategoryCard>
-                    <CategoryCard title="Design" icon=""></CategoryCard>
-                    <CategoryCard title="Developement" icon=""></CategoryCard>
-                    <CategoryCard title="Customer Service" icon=""></CategoryCard>
-                    <CategoryCard title="Automotive Jobs" icon=""></CategoryCard>
-                    <CategoryCard title="Health and Care" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Marketing" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Design" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Developement" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Customer Service" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Automotive Jobs" icon=""></CategoryCard>
+                    <CategoryCard @click="goToCategoryPage" title="Health and Care" icon=""></CategoryCard>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import { useRouter } from 'vue-router';
 import CategoryCard from './CategoryCard.vue';
+const router = useRouter();
+const goToCategoryPage = ()=>{
+router.push('/category');
+}
 </script>
 
 <style scope>

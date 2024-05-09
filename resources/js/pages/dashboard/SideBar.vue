@@ -8,7 +8,7 @@
                         <div>
                             <h3 class="mt-1 font-semibold text-lg">Condidate</h3>
                             <p class="mt-1">New York</p>
-                            <button class="mt-1 text-sm text-white bg-orange-400 px-2 py-1 rounded">View Profile</button>
+                            <button @click="goToMyProfilePage" class="mt-1 text-sm text-white bg-orange-400 px-2 py-1 rounded">View Profile</button>
                         </div>
                     </div>
                     <div class="navs mt-10">
@@ -50,9 +50,12 @@
                 </div>
             </div>
 </template>
-<script>
-export default {
-    
+<script setup>
+import { useRouter } from "vue-router"
+
+const router = useRouter();
+const goToMyProfilePage = ()=>{
+    router.push('/myProfile');
 }
 </script>
 <style scoped>

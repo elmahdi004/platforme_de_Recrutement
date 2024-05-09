@@ -1,5 +1,5 @@
 <template lang="">
-    <NavBar></NavBar>
+<NavBar :fixe="true"></NavBar>
     <JoinUs></JoinUs>
     <OurClient></OurClient>
     <PopularJob></PopularJob>

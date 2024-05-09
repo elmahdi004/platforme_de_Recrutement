@@ -1,8 +1,8 @@
 <template>
-    <div class="py-2 z-20 shadow-md sticky top-0">
+    <div :class="fixe ? 'z-20 shadow-md sticky top-0' : 'z-20 shadow-md'">
         <div class="navbar flex pt-5 pb-4 px-6 justify-between items-center">
         <div class="logo flex">
-            <img src="../../../svg/logo.svg" alt="logo" class="max-w-52">
+            <img src="../../../svg/logo.svg" alt="logo" class="max-w-40">
         </div>
         <div class="navs flex">
             <div class="nav flex items-center mx-6 cursor-pointer">
@@ -40,10 +40,9 @@
     </div>
     </div>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+import {defineProps} from 'vue';
+const props = defineProps(['fixe']);
 </script>
 <style scoped>
 /* .navbar{

@@ -1,5 +1,5 @@
 <template lang="">
-<div class="bg-white p-6 rounded-lg cursor-pointer card col-span-12 md:col-span-4 lg:col-span-3 border px-8 py-10 flex flex-col  duration-200 ">
+<div @click="goToJobPage" class="bg-white p-6 rounded-lg cursor-pointer card col-span-12 md:col-span-4 lg:col-span-3 border px-8 py-10 flex flex-col  duration-200 ">
                     <div class="one flex items-center">
                         <div class="job bg-[#e8f0fa] p-3 rounded-full" >
                             <img src="../../../svg/icons8-work.svg" alt="" srcset="" class="max-w-[16px] w-[16px]">
@@ -29,9 +29,11 @@
                     </div>
                 </div>
 </template>
-<script>
-export default {
-    
+<script setup>
+import { useRouter } from "vue-router"
+const router = useRouter();
+const goToJobPage = ()=>{
+router.push('/job');
 }
 </script>
 <style lang="">
