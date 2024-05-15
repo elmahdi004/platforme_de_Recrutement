@@ -15,7 +15,7 @@
                                         <i class="fa-solid fa-location-dot me-2 text-sm"></i>
                                         <p>New York</p>
                                     </div>
-                                    <div class="cat flex items-center text-secondary mx-3 mx-4">
+                                    <div class="cat flex items-center text-secondary mx-4">
                                         <i class="fa-solid fa-money-bill-wave me-2 text-sm"></i>
                                         <p>$15 - $18 / hour</p>
                                     </div>
