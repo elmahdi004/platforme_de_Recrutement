@@ -7,7 +7,9 @@ import MyApplied from "./pages/dashboard/pages/myApplied/MyApplied.vue";
 import Category from "./pages/category/Category.vue";
 import MyProfile from "./pages/myProfile/MyProfile.vue";
 import Job from "./pages/job/Job.vue";
-import Profile from "./pages/dashboard/pages/profile/Profile.vue"
+import Profile from "./pages/dashboard/pages/profile/Profile.vue";
+import MyJobs from "./pages/dashboard/pages/myJobs/MyJobs.vue";
+import SubmitJob from "./pages/dashboard/pages/SubmitJob/SubmitJob.vue";
 const router = createRouter({
     history:createWebHistory(),
     routes:[
@@ -55,6 +57,16 @@ const router = createRouter({
                     path:'/myApplied',
                     component:MyApplied,
                     name:"myApplied"
+                },
+                {
+                    path:'/myJobs',   
+                    component:MyJobs,
+                    name:"myJobs"
+                },
+                {
+                    path:'/addJob',   
+                    component:SubmitJob,
+                    name:"addJob"
                 },
             ]
         },

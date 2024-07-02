@@ -45,6 +45,22 @@
                                         </div>
                                     </div>
                                 </router-link>
+                                <router-link :to="{name:'myJobs'}" class="block text-secondary">
+                                    <div class="px-3 py-3 rounded-md my-2  duration-200">
+                                        <div class="flex items-center">
+                                            <i class="fa-regular fa-file-lines text-2xl"></i>
+                                            <p class="ms-3 text-md ">My Jobs</p>
+                                        </div>
+                                    </div>
+                                </router-link>
+                                <router-link :to="{name:'addJob'}" class="block text-secondary">
+                                    <div class="px-3 py-3 rounded-md my-2  duration-200">
+                                        <div class="flex items-center">
+                                            <i class="fa-regular fa-file-lines text-2xl"></i>
+                                            <p class="ms-3 text-md ">Submit Job</p>
+                                        </div>
+                                    </div>
+                                </router-link>
                             </ul>
                     </div>
                 </div>
