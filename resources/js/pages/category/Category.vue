@@ -1,8 +1,8 @@
 <template lang="">
 <NavBar :fixe="false"></NavBar>
-<div class="title flex flex-col items-center justify-center bg-[#f3f6fb] py-12">
-<h1 class="font-semibold text-black text-4xl">Marketing</h1>
-<p class="mt-4 text-secondary cursor-pointer">Home / Jobs / <span class="text-black">Marketing</span></p>
+<div v-if="category != ''" class="title flex flex-col items-center justify-center bg-[#f3f6fb] py-12">
+<h1 class="font-semibold text-black text-4xl capitalize">{{category.name}}</h1>
+<p class="mt-4 text-secondary cursor-pointer">Home / Jobs / <span class="text-black">{{category.name}}</span></p>
 </div>
 <div class="body grid grid-cols-12 mt-10 px-4">
 <div class="filter flex flex-col col-span-3 bg-[#f3f6fb] px-5 py-3 rounded-lg mt-7">
@@ -44,18 +44,30 @@
     </div>
 </div>
 </div>
-<div class="jobs px-5 py-3 col-span-9">
+<div v-if="category != '' && category.jobs.length != 0" class="jobs px-5 py-3 col-span-9">
     <CategoryJobCard></CategoryJobCard>
     <CategoryJobCard></CategoryJobCard>
     <CategoryJobCard></CategoryJobCard>
     <CategoryJobCard></CategoryJobCard>
+</div>
+<div v-else class="col-span-9 text-center">
+            <h3 class="mt-5 font-bold">No Jobs Founded for this Category</h3>
 </div>
 </div>
 </template>
 <script setup>
+import { onMounted, ref } from 'vue';
 import NavBar from '../Home/NavBar.vue';
 import CategoryJobCard from './CategoryJobCard.vue';
+import api from '../../axios';
+import Spinner from '../../components/Spinner.vue';
 const props = defineProps(['id']);
+const category = ref('');
+onMounted(()=>{
+    api.get(`/categories/${props.id}`).then(({data})=>{
+        category.value = data;
+    });
+});
 </script>
 <style scoped>
 

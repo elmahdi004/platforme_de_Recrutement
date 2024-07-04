@@ -36,7 +36,7 @@ class JobCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return JobCategory::where('id',$id)->with('jobs')->first();
     }
 
     /**
