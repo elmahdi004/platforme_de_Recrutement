@@ -1,6 +1,6 @@
 <template lang="">
 <NavBar :fixe="false"></NavBar>
-<div v-if="category != ''" class="title flex flex-col items-center justify-center bg-[#f3f6fb] py-12">
+<div v-if="category != ''" class=" sticky top-0 z-40 title flex flex-col items-center justify-center bg-[#f3f6fb] py-12">
 <h1 class="font-semibold text-black text-4xl capitalize">{{category.name}}</h1>
 <p class="mt-4 text-secondary cursor-pointer">Home / Jobs / <span class="text-black">{{category.name}}</span></p>
 </div>

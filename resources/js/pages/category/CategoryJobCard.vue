@@ -3,7 +3,7 @@
         <div class="save absolute top-5 right-5 text-secondary rounded-full duration-200 hover:bg-[#ecedf2] w-8 h-8 flex items-center justify-center">
             <i class="fa-regular fa-bookmark"></i>
         </div>
-                        <div class="col-span-6 flex items-center">
+                        <div class="col-span-10 flex items-center">
                             <div class="logo self-start mt-2 w-16 h-16 rounded-lg object-cover overflow-hidden">
                                 <img src="../../../image/y1.jpg" alt="" srcset="">
                             </div>
@@ -12,15 +12,15 @@
                                 <div class="flex my-3">
                                     <div class="position flex items-center text-secondary">
                                         <i class="fa-solid fa-location-dot me-2 text-sm"></i>
-                                        <p>New York</p>
+                                        <p>{{job.location}}</p>
                                     </div>
                                     <div class="cat flex items-center text-secondary mx-3">
                                         <i class="fa-solid fa-briefcase me-2 text-sm"></i>
                                         <p>Design</p>
                                     </div>
-                                    <div class="cat flex items-center text-secondary mx-3">
+                                    <div class="cat flex items-center text-secondary mx-3 flex-nowrap">
                                         <i class="fa-solid fa-money-bill-wave me-2 text-sm"></i>
-                                        <p>$15 - $18 / hour</p>
+                                        <p>${{job.min_salary}} - ${{job.max_salary}} / {{job.salaryType}}</p>
                                     </div>
                                 </div>
                                 <div class="budges flex">
