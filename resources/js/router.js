@@ -25,9 +25,10 @@ const router = createRouter({
             props:true
         },
         {
-        path:'/job',
+        path:'/job/:id',
         component:Job,
-        name:"job"
+        name:"job",
+        props:true
         },
         {
             path:'/myProfile',

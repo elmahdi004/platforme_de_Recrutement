@@ -1,5 +1,5 @@
 <template lang="">
-<div @click="goToJobPage" class="header my-5 relative cursor-pointer grid grid-cols-12 px-10 py-8 items-center border rounded-lg duration-200 hover:shadow-md">
+<div @click="goToJobPage(job.id)" class="header my-5 relative cursor-pointer grid grid-cols-12 px-10 py-8 items-center border rounded-lg duration-200 hover:shadow-md">
         <div class="save absolute top-5 right-5 text-secondary rounded-full duration-200 hover:bg-[#ecedf2] w-8 h-8 flex items-center justify-center">
             <i class="fa-regular fa-bookmark"></i>
         </div>
@@ -40,8 +40,8 @@ import { useRouter } from 'vue-router';
 import { defineProps } from 'vue';
 const props = defineProps(['job']);
 const router = useRouter();
-const goToJobPage = ()=>{
-router.push('/job');
+const goToJobPage = (id)=>{
+router.push(`/job/${id}`);
 }
 </script>
 <style lang="">

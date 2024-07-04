@@ -2,7 +2,9 @@
     <div :class="fixe ? 'z-20 shadow-md sticky top-0 bg-white' : 'z-20 shadow-md bg-white'">
         <div class="navbar flex pt-5 pb-4 px-6 justify-between items-center">
         <div class="logo flex">
-            <img src="../../../svg/logo.svg" alt="logo" class="max-w-40">
+            <router-link to="/">
+                <img src="../../../svg/logo.svg" alt="logo" class="max-w-40">
+            </router-link>
         </div>
         <div class="navs flex">
             <div class="nav flex items-center mx-6 cursor-pointer">

@@ -35,9 +35,9 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Job $job)
+    public function show($id)
     {
-        //
+        return Job::where('id',$id)->with('category')->first();
     }
 
     /**
