@@ -8,7 +8,7 @@
                                 <img src="../../../image/y1.jpg" alt="" srcset="">
                             </div>
                             <div class="content flex flex-col ms-10">
-                                <router-link to="#"><h1 class="font-semibold text-2xl duration-200 hover:text-orange-500">Finance Manager & Health</h1></router-link>
+                                <router-link to="#"><h1 class="font-semibold text-2xl duration-200 hover:text-orange-500">{{job.title}}</h1></router-link>
                                 <div class="flex my-3">
                                     <div class="position flex items-center text-secondary">
                                         <i class="fa-solid fa-location-dot me-2 text-sm"></i>
@@ -37,6 +37,8 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router';
+import { defineProps } from 'vue';
+const props = defineProps(['job']);
 const router = useRouter();
 const goToJobPage = ()=>{
 router.push('/job');

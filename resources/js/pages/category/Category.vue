@@ -45,13 +45,13 @@
 </div>
 </div>
 <div v-if="category != '' && category.jobs.length != 0" class="jobs px-5 py-3 col-span-9">
-    <CategoryJobCard></CategoryJobCard>
-    <CategoryJobCard></CategoryJobCard>
-    <CategoryJobCard></CategoryJobCard>
-    <CategoryJobCard></CategoryJobCard>
+    <CategoryJobCard v-for="(job, index) in category.jobs" :key="index" :job="job"></CategoryJobCard>
 </div>
 <div v-else class="col-span-9 text-center">
-            <h3 class="mt-5 font-bold">No Jobs Founded for this Category</h3>
+<div v-if="loading" class="flex justify-center items-center">
+    <Spinner/>     
+</div>
+            <h3 v-else class="mt-5 font-bold">No Jobs Founded for this Category</h3>
 </div>
 </div>
 </template>
@@ -63,9 +63,11 @@ import api from '../../axios';
 import Spinner from '../../components/Spinner.vue';
 const props = defineProps(['id']);
 const category = ref('');
+const loading = ref(true);
 onMounted(()=>{
     api.get(`/categories/${props.id}`).then(({data})=>{
         category.value = data;
+        loading.value = false;
     });
 });
 </script>
