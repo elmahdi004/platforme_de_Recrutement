@@ -55,6 +55,7 @@
 <script setup>
 import NavBar from '../Home/NavBar.vue';
 import CategoryJobCard from './CategoryJobCard.vue';
+const props = defineProps(['id']);
 </script>
 <style scoped>
 

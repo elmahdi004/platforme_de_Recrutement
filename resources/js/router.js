@@ -19,9 +19,10 @@ const router = createRouter({
             name:"index"
         },
         {
-            path:'/category',
+            path:'/category/:id',
             component:Category,
-            name:"category"
+            name:"category",
+            props:true
         },
         {
         path:'/job',

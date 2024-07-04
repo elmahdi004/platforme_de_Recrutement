@@ -1,5 +1,5 @@
 <template>
-    <div :class="fixe ? 'z-20 shadow-md sticky top-0' : 'z-20 shadow-md'">
+    <div :class="fixe ? 'z-20 shadow-md sticky top-0 bg-white' : 'z-20 shadow-md bg-white'">
         <div class="navbar flex pt-5 pb-4 px-6 justify-between items-center">
         <div class="logo flex">
             <img src="../../../svg/logo.svg" alt="logo" class="max-w-40">

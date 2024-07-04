@@ -12,13 +12,8 @@
                 </div>
         </div>
         <div class="body py-5 mt-4">
-            <div class="categories grid grid-cols-12 gap-4">
-                    <CategoryCard @click="goToCategoryPage" title="Marketing" icon=""></CategoryCard>
-                    <CategoryCard @click="goToCategoryPage" title="Design" icon=""></CategoryCard>
-                    <CategoryCard @click="goToCategoryPage" title="Developement" icon=""></CategoryCard>
-                    <CategoryCard @click="goToCategoryPage" title="Customer Service" icon=""></CategoryCard>
-                    <CategoryCard @click="goToCategoryPage" title="Automotive Jobs" icon=""></CategoryCard>
-                    <CategoryCard @click="goToCategoryPage" title="Health and Care" icon=""></CategoryCard>
+            <div class="categories grid grid-cols-12 gap-4" v-if="categories.length > 0">
+                    <CategoryCard v-for="(category, index) in categories" :key="index" @click="goToCategoryPage(category.id)" :category="category"></CategoryCard>
             </div>
         </div>
     </div>
@@ -26,10 +21,18 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import CategoryCard from './CategoryCard.vue';
+import { onMounted, ref } from 'vue';
+import api from '../../axios';
 const router = useRouter();
-const goToCategoryPage = ()=>{
-router.push('/category');
+const categories = ref([]);
+const goToCategoryPage = (id)=>{
+router.push(`/category/${id}`);
 }
+onMounted(()=>{
+    api.get('/categories').then(({data})=>{
+        categories.value = data;
+    });
+});
 </script>
 
 <style scope>
