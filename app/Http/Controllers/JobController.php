@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use Illuminate\Routing\Route;
 
 class JobController extends Controller
 {
@@ -62,5 +63,8 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         //
+    }
+    public function popularJobs(){
+        return Job::limit(8)->with('category')->get();
     }
 }

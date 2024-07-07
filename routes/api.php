@@ -24,3 +24,4 @@ Route::resources([
     'categories' => JobCategoryController::class,
     'job' => JobController::class
 ]);
+Route::get('/popular-jobs',[JobController::class,'popularJobs']);

@@ -13,23 +13,23 @@
                 </div>
         </div>
         <div class="body py-5 mt-4">
-            <div class="categories grid grid-cols-12 gap-4">
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
-                <JobCard></JobCard>
+            <div class="categories grid grid-cols-12 gap-4" v-if="jobs.length > 0">
+                <JobCard v-for="(job, index) in jobs" :key="index" :job="job"></JobCard>
             </div>
         </div>
         </div>
     </div>
 </template>
 <script setup>
+import { onMounted, ref } from 'vue';
 import JobCard from './JobCard.vue';
-
+import api from '../../axios';
+const jobs = ref([]);
+onMounted(()=>{
+api.get('/popular-jobs').then(({data})=>{
+jobs.value = data;
+})
+});
 
 </script>
 <style scoped>
