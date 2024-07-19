@@ -1,7 +1,6 @@
 <template lang="">
-        <Modal></Modal>
-
-<NavBar :fixe="true"></NavBar>
+<NavBar :fixe="true">
+</NavBar>
     <JoinUs></JoinUs>
     <OurClient></OurClient>
     <PopularJob></PopularJob>
