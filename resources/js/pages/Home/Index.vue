@@ -1,4 +1,6 @@
 <template lang="">
+        <Modal></Modal>
+
 <NavBar :fixe="true"></NavBar>
     <JoinUs></JoinUs>
     <OurClient></OurClient>
@@ -19,6 +21,7 @@ import BuildResume from "./BuildResume.vue";
 import FeaturedJob from "./FeaturedJob.vue";
 import SuccessfulBusiness from "./SuccessfulBusiness.vue";
 import Footer from "./Footer.vue";
+import Modal from "../../components/Modal.vue";
 </script>
 <style lang="">
     
