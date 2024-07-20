@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
@@ -22,6 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resources([
     'categories' => JobCategoryController::class,
-    'job' => JobController::class
+    'job' => JobController::class,
 ]);
+
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/auth/login','login');
+});
 Route::get('/popular-jobs',[JobController::class,'popularJobs']);

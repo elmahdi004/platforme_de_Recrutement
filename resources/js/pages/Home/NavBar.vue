@@ -63,11 +63,10 @@
     <Modal v-show="modal" @close-modal="onCloseModal">
         <template #header>
             <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
-                        >
-                            Sign in to your account
-                        </h1>
-
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            >
+                Sign in to your account
+            </h1>
         </template>
         <template #body>
             <div
@@ -76,9 +75,8 @@
                 <div
                     class="min-w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
                 >
-                    <div class="space-y-4 md:space-y-6 p-3
-                    ">
-                        <form class="space-y-4 md:space-y-6" action="#">
+                    <div class="space-y-4 md:space-y-6 p-3">
+                        <form class="space-y-4 md:space-y-6" action="#" @submit.prevent="loginUser">
                             <div>
                                 <label
                                     for="email"
@@ -92,6 +90,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 focus:border-orange-600 rounded-lg focus:ring-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="name@company.com"
                                     required=""
+                                    v-model="login.email"
                                 />
                             </div>
                             <div>
@@ -107,6 +106,7 @@
                                     placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required=""
+                                    v-model="login.password"
                                 />
                             </div>
                             <div class="flex items-center justify-between">
@@ -147,9 +147,14 @@
         </template>
         <template #footer>
             <div>
-                <p class="text-sm  font-light text-gray-500 dark:text-gray-400">
-                      Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
-                  </p>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                    Don’t have an account yet?
+                    <a
+                        href="#"
+                        class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        >Sign up</a
+                    >
+                </p>
             </div>
         </template>
     </Modal>
@@ -157,14 +162,26 @@
 <script setup>
 import { defineProps, ref } from "vue";
 import Modal from "../../components/Modal.vue";
+import api from "../../axios";
 const props = defineProps(["fixe"]);
 const modal = ref(false);
+const login = ref({
+    email: "",
+    password: "",
+});
 const openModal = () => {
     console.log("Open");
     modal.value = true;
 };
 const onCloseModal = () => {
     modal.value = false;
+};
+const loginUser = () => {
+    api.post("/auth/login", login.value)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((e) => console.log(e));
 };
 </script>
 <style scoped>
