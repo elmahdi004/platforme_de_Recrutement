@@ -68,8 +68,8 @@ return [
             'model' => App\Models\User::class,
         ],
         'employers' => [
-            'driver' => 'database',
-            'table' => 'employers',
+            'driver' => 'eloquent',
+            'table' => App\Models\Employer::class,
         ],
     ],
 
