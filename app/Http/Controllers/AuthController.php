@@ -9,8 +9,9 @@ class AuthController extends Controller
 {
     public function login(Request $request){
         $credentials = $request->only(['email','password']);
-        if(Auth::attempt($credentials)){
-            return response(Auth::user(),200);
+        if(Auth::guard('employee')->attempt($credentials)){
+             $user = Auth::guard('employee')->user();
+             return response()->json($user, 200);
         }
         return response("Email or passowrd is incorrect , please try again",404);
     }
