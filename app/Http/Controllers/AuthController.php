@@ -41,4 +41,7 @@ class AuthController extends Controller
         }
         return response('there is no user login',404);
     }
+    public function logout(){
+        Auth::guard('employers')->logout();
+    }
 }

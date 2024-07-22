@@ -37,11 +37,18 @@
             <div class="actions flex">
                 <div class="action mx-3">
                     <button
+                    @click="logout"
+                    v-if="auth && auth != null"
+                        class="bg-blue-100 text-blue-700 font-medium rounded-md px-4 py-3"                    >
+                        Logout
+                    </button>
+                    <button v-else
                         class="bg-blue-100 text-blue-700 font-medium rounded-md px-4 py-3"
                         @click="openModal"
                     >
                         Login/Register
                     </button>
+
                 </div>
                 <div class="action mx-3">
                     <button
@@ -265,9 +272,19 @@
     </Modal>
 </template>
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref ,onMounted} from "vue";
 import Modal from "../../components/Modal.vue";
 import api from "../../axios";
+
+import { useStore } from "../../pinia";
+const auth = ref();
+const store = useStore();
+onMounted(async() => {
+await store.getUserAction();
+auth.value = store.user;
+console.log(store.user);
+});
+
 const props = defineProps(["fixe"]);
 const modal = ref(false);
 const login = ref({
@@ -320,6 +337,11 @@ const removeErrorMessage = ()=>{
 const changePage = ()=>{
     loginIndex.value = !loginIndex.value;
     console.log(loginIndex.value);
+}
+const logout = ()=>{
+    api.get('/logout').then(()=>{
+        auth.value = null;
+    });
 }
 </script>
 <style scoped>
