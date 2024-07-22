@@ -26,9 +26,11 @@ Route::resources([
     'job' => JobController::class,
 ]);
 
-Route::controller(AuthController::class)->group(function(){
-    Route::post('/auth/login','login');
-    Route::post('/auth/register','register');
-
+Route::middleware(['web'])->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('/auth/login', 'login');
+        Route::post('/auth/register', 'register');
+        Route::get('/auth/get-user-login', 'getUser');
+    });
 });
 Route::get('/popular-jobs',[JobController::class,'popularJobs']);

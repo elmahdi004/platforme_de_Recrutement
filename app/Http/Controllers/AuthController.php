@@ -35,4 +35,10 @@ class AuthController extends Controller
         ]);
         return response('your account has been created , now try to login',201);
     }
+    public function getUser(){
+        if(Auth::guard('employers')->check()){
+                return response(Auth::guard('employers')->user(),200);
+        }
+        return response('there is no user login',404);
+    }
 }
