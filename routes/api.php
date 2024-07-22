@@ -28,5 +28,7 @@ Route::resources([
 
 Route::controller(AuthController::class)->group(function(){
     Route::post('/auth/login','login');
+    Route::post('/auth/register','register');
+
 });
 Route::get('/popular-jobs',[JobController::class,'popularJobs']);

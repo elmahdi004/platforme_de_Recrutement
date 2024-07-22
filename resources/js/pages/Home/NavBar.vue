@@ -65,7 +65,7 @@
             <h1
                 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
             >
-                Sign in to your account
+                {{loginIndex ? 'Sign in to your account' : 'Create a new account now' }} 
             </h1>
         </template>
         <template #body>
@@ -75,7 +75,7 @@
                 <div
                     class="min-w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
                 >
-                    <div class="space-y-4 md:space-y-6 p-3">
+                    <div class="space-y-4 md:space-y-6 p-3" v-if="loginIndex">
                         <form class="space-y-4 md:space-y-6" action="#" @submit.prevent="loginUser">
                             <div>
                                 <label
@@ -84,13 +84,14 @@
                                     >Your email</label
                                 >
                                 <input
+                                    @input="removeErrorMessage"
                                     type="email"
                                     name="email"
                                     id="email"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 focus:border-orange-600 rounded-lg focus:ring-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="name@company.com"
                                     required=""
-                                    v-model="login.email"
+                                    v-model="signup.email"
                                 />
                             </div>
                             <div>
@@ -100,13 +101,14 @@
                                     >Password</label
                                 >
                                 <input
+                                @input="removeErrorMessage"
                                     type="password"
                                     name="password"
                                     id="password"
                                     placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required=""
-                                    v-model="login.password"
+                                    v-model="signup.password"
                                 />
                             </div>
                             <div class="flex items-center justify-between">
@@ -117,7 +119,6 @@
                                             aria-describedby="remember"
                                             type="checkbox"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                            required=""
                                         />
                                     </div>
                                     <div class="ml-3 text-sm">
@@ -140,6 +141,105 @@
                             >
                                 Sign in
                             </button>
+                            <p class="text-center text-red-500 font-semibold text-lg" v-show="errorMessage != ''">{{ errorMessage }}</p>
+                        </form>
+                    </div>
+                    <div class="space-y-4 md:space-y-6 p-3" v-else>
+                        <form class="space-y-4 md:space-y-6" action="#" @submit.prevent="RegisterUser">
+                            <div>
+                                <label
+                                    for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >Your email</label
+                                >
+                                <input
+                                    @input="removeErrorMessage"
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 focus:border-orange-600 rounded-lg focus:ring-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@company.com"
+                                    required=""
+                                    v-model="signup.email"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >Your name</label
+                                >
+                                <input
+                                    @input="removeErrorMessage"
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 focus:border-orange-600 rounded-lg focus:ring-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="bellaziz elmahdi"
+                                    required=""
+                                    v-model="signup.name"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    for="password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >Password</label
+                                >
+                                <input
+                                @input="removeErrorMessage"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="••••••••"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required=""
+                                    v-model="signup.password"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    for="password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >Password confirmation</label
+                                >
+                                <input
+                                @input="removeErrorMessage"
+                                    type="password"
+                                    name="password_conirmation"
+                                    id="password_confirmation"
+                                    placeholder="••••••••"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required=""
+                                    v-model="signup.password_confirmation"
+                                />
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input
+                                            id="remember"
+                                            aria-describedby="remember"
+                                            type="checkbox"
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                        />
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label
+                                            for="remember"
+                                            class="text-gray-500 dark:text-gray-300"
+                                            >Remember me</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                type="submit"
+                                class="w-full text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                            >
+                                Sign up
+                            </button>
+                            <p class="text-center text-red-500 font-semibold text-lg" v-show="errorMessage != ''">{{ errorMessage }}</p>
                         </form>
                     </div>
                 </div>
@@ -148,11 +248,12 @@
         <template #footer>
             <div>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                    Don’t have an account yet?
+                    {{ !loginIndex ? 'Do you have an account?':'Don’t have an account yet?' }}
                     <a
+                        @click="changePage"
                         href="#"
                         class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        >Sign up</a
+                        >{{loginIndex ? 'Sign up' : 'Login'}}</a
                     >
                 </p>
             </div>
@@ -169,6 +270,14 @@ const login = ref({
     email: "",
     password: "",
 });
+const signup = ref({
+    name : '',
+    email : '',
+    password : '',
+    password_confirmation : ''
+});
+const errorMessage = ref('');
+const loginIndex = ref(true);
 const openModal = () => {
     console.log("Open");
     modal.value = true;
@@ -181,8 +290,27 @@ const loginUser = () => {
         .then((response) => {
             console.log(response);
         })
-        .catch((e) => console.log(e));
+        .catch(({response}) => {
+            errorMessage.value = response.data;
+            console.log(response.data);
+        });
 };
+const RegisterUser = ()=>{
+    api.post("/auth/register", signup.value)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(({response}) => {
+            console.log(response);
+        });
+}
+const removeErrorMessage = ()=>{
+    errorMessage.value = '';
+}
+const changePage = ()=>{
+    loginIndex.value = !loginIndex.value;
+    console.log(loginIndex.value);
+}
 </script>
 <style scoped>
 /* .navbar{

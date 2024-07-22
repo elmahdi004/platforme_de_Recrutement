@@ -39,7 +39,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'employee' => [
+        'employers' => [
             'driver' => 'session',
             'provider' => 'employers',
         ],
@@ -69,7 +69,7 @@ return [
         ],
         'employers' => [
             'driver' => 'eloquent',
-            'table' => App\Models\Employer::class,
+            'model' => App\Models\Employer::class,
         ],
     ],
 
