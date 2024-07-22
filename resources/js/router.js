@@ -1,7 +1,7 @@
-import { createRouter,createWebHistory } from "vue-router";
-import Index from './pages/Home/Index.vue';
-import Dashboard from './pages/dashboard/Dashboard.vue';
-import Statistics from './pages/dashboard/pages/Statistics.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Index from "./pages/Home/Index.vue";
+import Dashboard from "./pages/dashboard/Dashboard.vue";
+import Statistics from "./pages/dashboard/pages/Statistics.vue";
 import Resume from "./pages/dashboard/pages/resume/Resume.vue";
 import MyApplied from "./pages/dashboard/pages/myApplied/MyApplied.vue";
 import Category from "./pages/category/Category.vue";
@@ -10,69 +10,84 @@ import Job from "./pages/job/Job.vue";
 import Profile from "./pages/dashboard/pages/profile/Profile.vue";
 import MyJobs from "./pages/dashboard/pages/myJobs/MyJobs.vue";
 import SubmitJob from "./pages/dashboard/pages/SubmitJob/SubmitJob.vue";
+import { useStore } from "./pinia";
 const router = createRouter({
-    history:createWebHistory(),
-    routes:[
+    history: createWebHistory(),
+    routes: [
         {
-            path:'/',
-            component:Index,
-            name:"index"
+            path: "/",
+            component: Index,
+            name: "index",
         },
         {
-            path:'/category/:id',
-            component:Category,
-            name:"category",
-            props:true
+            path: "/category/:id",
+            component: Category,
+            name: "category",
+            props: true,
         },
         {
-        path:'/job/:id',
-        component:Job,
-        name:"job",
-        props:true
+            path: "/job/:id",
+            component: Job,
+            name: "job",
+            props: true,
         },
         {
-            path:'/myProfile',
-            component:MyProfile,
-            name:"myProfile"
+            path: "/myProfile",
+            component: MyProfile,
+            name: "myProfile",
         },
         {
-            path:'/dashboard',
-            component:Dashboard,
-            name:"dashboard",
-            children:[
+            path: "/dashboard",
+            component: Dashboard,
+            name: "dashboard",
+            children: [
                 {
-                    path:'/dashboard/statistics',
-                    component:Statistics,
-                    name:"statistics"
+                    path: "/dashboard/statistics",
+                    component: Statistics,
+                    name: "statistics",
                 },
                 {
-                    path:'/profile',
-                    component:Profile,
-                    name:"profile"
+                    path: "/profile",
+                    component: Profile,
+                    name: "profile",
                 },
                 {
-                    path:'/myResume',
-                    component:Resume,
-                    name:"myResume"
+                    path: "/myResume",
+                    component: Resume,
+                    name: "myResume",
                 },
                 {
-                    path:'/myApplied',
-                    component:MyApplied,
-                    name:"myApplied"
+                    path: "/myApplied",
+                    component: MyApplied,
+                    name: "myApplied",
                 },
                 {
-                    path:'/myJobs',   
-                    component:MyJobs,
-                    name:"myJobs"
+                    path: "/myJobs",
+                    component: MyJobs,
+                    name: "myJobs",
                 },
                 {
-                    path:'/addJob',   
-                    component:SubmitJob,
-                    name:"addJob"
+                    path: "/addJob",
+                    component: SubmitJob,
+                    name: "addJob",
                 },
-            ]
+            ],
         },
-    ]
+    ],
+});
+
+router.beforeEach(async (to, from, next) => {
+    const store = useStore();
+    console.log("to", to);
+    console.log("from", from);
+    if (to.path == "/") {
+        next();
+    } else {
+        await store.getUserAction();
+        if (store.user != null) {
+            next();
+        }
+    }
 });
 
 export default router;

@@ -143,10 +143,11 @@
                                 >
                             </div>
                             <button
+                                :disabled="loading"
                                 type="submit"
-                                class="w-full text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                class=" disabled:bg-orange-200 w-full text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                             >
-                                Sign in
+                                {{ loading ? 'Loading ...' : 'Sign in' }}
                             </button>
                             <p class="text-center text-red-500 font-semibold text-lg" v-show="errorMessage != ''">{{ errorMessage }}</p>
                         </form>
@@ -245,10 +246,11 @@
                                 </div>
                             </div>
                             <button
+                                :disabled="loading"
                                 type="submit"
-                                class="w-full text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                class="w-full disabled:bg-orange-200 text-white bg-orange-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                             >
-                                Sign up
+                                {{ loading ? 'Loading ...' : 'Sign up' }}
                             </button>
                             <p class="text-center text-green-700 font-semibold text-lg capitalize" v-show="registerSuccess != ''">{{ registerSuccess }}</p>
                         </form>
@@ -287,6 +289,7 @@ console.log(store.user);
 
 const props = defineProps(["fixe"]);
 const modal = ref(false);
+const loading = ref(false);
 const login = ref({
     email: "",
     password: "",
@@ -309,16 +312,23 @@ const onCloseModal = () => {
     modal.value = false;
 };
 const loginUser = () => {
+    loading.value = true;
     api.post("/auth/login", login.value)
-        .then((response) => {
+        .then(async(response) => {
             console.log(response);
+            await store.getUserAction();
+            auth.value = store.user;
+            modal.value = false;
         })
         .catch(({response}) => {
             errorMessage.value = response.data;
             console.log(response.data);
+        }).finally(()=>{
+            loading.value = false;
         });
 };
 const RegisterUser = ()=>{
+    loading.value = true;
     api.post("/auth/register", signup.value)
         .then(({data}) => {
             registerSuccess.value = data;
@@ -329,6 +339,8 @@ const RegisterUser = ()=>{
                 signUpErrors.value = response.data.errors;
                 console.log(signUpErrors.value)
             }
+        }).finally(()=>{
+            loading.value = false
         });
 }
 const removeErrorMessage = ()=>{
@@ -341,6 +353,7 @@ const changePage = ()=>{
 const logout = ()=>{
     api.get('/logout').then(()=>{
         auth.value = null;
+        store.user = null;
     });
 }
 </script>

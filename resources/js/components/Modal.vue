@@ -1,5 +1,5 @@
 <template lang="">
-<div id="default-modal" tabindex="-1" aria-hidden="true" :class="[open ? '' : '',' bg-slate-200/80  h-full absolute flex overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0  max-h-full']">
+<div @click="closeModal" id="default-modal" tabindex="-1" aria-hidden="true" :class="[open ? '' : '',' bg-slate-200/80  h-full absolute flex overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0  max-h-full']">
     <div class="relative p-4 w-full max-w-3xl">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 overflow-y-scroll">
