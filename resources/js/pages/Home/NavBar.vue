@@ -91,7 +91,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 focus:border-orange-600 rounded-lg focus:ring-orange-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="name@company.com"
                                     required=""
-                                    v-model="signup.email"
+                                    v-model="login.email"
                                 />
                             </div>
                             <div>
@@ -108,7 +108,7 @@
                                     placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required=""
-                                    v-model="signup.password"
+                                    v-model="login.password"
                                 />
                             </div>
                             <div class="flex items-center justify-between">
@@ -162,6 +162,7 @@
                                     required=""
                                     v-model="signup.email"
                                 />
+                                <p class="text-red-500 font-semibold" v-if="signUpErrors && 'email' in signUpErrors">{{ signUpErrors.email[0] }}</p>
                             </div>
                             <div>
                                 <label
@@ -179,6 +180,7 @@
                                     required=""
                                     v-model="signup.name"
                                 />
+                                <p class="text-red-500 font-semibold" v-if="signUpErrors && 'name' in signUpErrors">{{ signUpErrors.name[0] }}</p>
                             </div>
                             <div>
                                 <label
@@ -196,6 +198,7 @@
                                     required=""
                                     v-model="signup.password"
                                 />
+                                <p class="text-red-500 font-semibold" v-if="signUpErrors && 'password' in signUpErrors">{{ signUpErrors.password[0] }}</p>
                             </div>
                             <div>
                                 <label
@@ -213,6 +216,7 @@
                                     required=""
                                     v-model="signup.password_confirmation"
                                 />
+                                
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-start">
@@ -239,7 +243,7 @@
                             >
                                 Sign up
                             </button>
-                            <p class="text-center text-red-500 font-semibold text-lg" v-show="errorMessage != ''">{{ errorMessage }}</p>
+                            <p class="text-center text-green-700 font-semibold text-lg capitalize" v-show="registerSuccess != ''">{{ registerSuccess }}</p>
                         </form>
                     </div>
                 </div>
@@ -276,8 +280,10 @@ const signup = ref({
     password : '',
     password_confirmation : ''
 });
+const signUpErrors = ref();
 const errorMessage = ref('');
 const loginIndex = ref(true);
+const registerSuccess = ref('');
 const openModal = () => {
     console.log("Open");
     modal.value = true;
@@ -297,11 +303,15 @@ const loginUser = () => {
 };
 const RegisterUser = ()=>{
     api.post("/auth/register", signup.value)
-        .then((response) => {
-            console.log(response);
+        .then(({data}) => {
+            registerSuccess.value = data;
         })
         .catch(({response}) => {
             console.log(response);
+            if(response.status == 422){
+                signUpErrors.value = response.data.errors;
+                console.log(signUpErrors.value)
+            }
         });
 }
 const removeErrorMessage = ()=>{

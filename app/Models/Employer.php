@@ -9,5 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Employer extends Authenticatable
 {
     use HasFactory;
+    protected $guarded = [];
     // protected $table = 'employers';
 }
