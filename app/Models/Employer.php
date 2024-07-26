@@ -11,4 +11,7 @@ class Employer extends Authenticatable
     use HasFactory;
     protected $guarded = [];
     // protected $table = 'employers';
+    public function jobs(){
+        return $this->hasMany(Job::class,'employer_id');
+    }
 }

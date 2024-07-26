@@ -2,19 +2,19 @@
     <div class="header grid grid-cols-12 px-3 py-4 mt-3 items-center border-b">
                         <div class="col-span-4 flex items-center">
                             <div class="content flex flex-col ms-4">
-                                <router-link to="#"><h1 class="font-semibold text-xl duration-200 hover:text-orange-500">Finance Manager & Health</h1></router-link>
+                                <router-link to="#"><h1 class="font-semibold text-xl duration-200 hover:text-orange-500">{{job.title}}</h1></router-link>
                                 <div class="flex">
                                     <div class="position flex items-center text-secondary">
                                         <i class="fa-solid fa-location-dot me-2 text-sm"></i>
-                                        <p>New York</p>
+                                        <p>{{job.location}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <h1 class="col-span-2 text-orange-400 mx-5">415 Applicant(s)</h1>
                         <div class="col-span-2 flex flex-col">
-                            <h1 class="my-1"><span class="font-bold text-md">Created:</span> June 20, 2021</h1>
-                            <h1 class="my-1"><span class="font-bold text-md">Created:</span> June 20, 2021</h1>
+                            <h1 class="my-1"><span class="font-bold text-md">Created:</span> <span>June 20, 2021</span></h1>
+                            <h1 class="my-1"><span class="font-bold text-md">Expiry date:</span> <span>June 20, 2021</span></h1>
                         </div>
                         <h1 class="col-span-2 text-yellow-500 font-bold text-sm text-center">Pending</h1>
                         <div class="col-span-2 flex">
@@ -27,10 +27,10 @@
                         </div>
                     </div>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+const props = defineProps([
+    'job'
+]);
 </script>
 <style lang="">
     
