@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Application;
+use App\Models\Candidate;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\JobCategory;
@@ -25,6 +27,8 @@ class DatabaseSeeder extends Seeder
         // JobCategory::factory(6)->create();
         // Employer::factory(1)->create();
         // Job::factory(50)->create();
+        // Candidate::factory(30)->create();
+        Application::factory(1000)->create();
 
     }
 }

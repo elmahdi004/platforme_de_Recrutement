@@ -13,6 +13,8 @@
                         type="text"
                         class="ms-2 w-full focus:outline-none bg-transparent caret-orange-400"
                         placeholder="Search..."
+                        v-model="search"
+                        @input="onSearch"
                     />
                 </div>
             </div>
@@ -27,7 +29,7 @@
                     <h1 class="col-span-2">Actions</h1>
                 </div>
                 <div v-if="!loading && jobs.length > 0">
-                    <my-job-item v-for="(job,index) in jobs" :key="index" :job="job"></my-job-item>
+                                        <my-job-item v-for="(job,index) in searchedjobs" :key="index" :job="job"></my-job-item>
                 </div>
                 <div v-else class="py-10 flex justify-center">
                         <Spinner/>
@@ -44,6 +46,8 @@ import { useStore } from "../../../../pinia";
 import Spinner from "../../../../components/Spinner.vue";
 const loading = ref(false);
 const jobs = ref([]);
+const searchedjobs = ref([]);
+const search = ref('');
 onMounted(async () => {
     loading.value = true;
     const store = useStore();
@@ -51,10 +55,15 @@ onMounted(async () => {
     api.get(`/employer/${store.user.id}/my-jobs`)
         .then(({ data }) => {
             jobs.value = data;
+            searchedjobs.value = jobs.value;
         })
         .catch((e) => console.log(e)).finally(()=>{
             loading.value = false;
         });
 });
+const onSearch = ()=>{
+searchedjobs.value = jobs.value.filter(ele => ele.title.toLowerCase().includes(search.value.toLowerCase()));
+console.log(searchedjobs.value);
+}
 </script>
 <style></style>

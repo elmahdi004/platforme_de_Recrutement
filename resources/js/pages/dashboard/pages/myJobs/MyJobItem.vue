@@ -11,12 +11,12 @@
                                 </div>
                             </div>
                         </div>
-                        <h1 class="col-span-2 text-orange-400 mx-5">415 Applicant(s)</h1>
+                        <h1 class="col-span-2 text-orange-400 mx-5">{{job.candidates_count}} Applicant(s)</h1>
                         <div class="col-span-2 flex flex-col">
                             <h1 class="my-1"><span class="font-bold text-md">Created:</span> <span>June 20, 2021</span></h1>
-                            <h1 class="my-1"><span class="font-bold text-md">Expiry date:</span> <span>June 20, 2021</span></h1>
+                            <h1 class="my-1"><span class="font-bold text-md">Expiry date:</span> <span class="text-red-700">June 20, 2021</span></h1>
                         </div>
-                        <h1 class="col-span-2 text-yellow-500 font-bold text-sm text-center">Pending</h1>
+                        <h1 class="col-span-2 text-yellow-500 font-bold text-sm text-center">{{job.status ? 'Published' : 'Draft'}}</h1>
                         <div class="col-span-2 flex">
                             <button class="bg-orange-100 text-orange-600 px-2 py-1 mx-2 rounded-lg w-8 h-8 flex items-center justify-center">
                                 <i class="fa-solid fa-xmark"></i>
