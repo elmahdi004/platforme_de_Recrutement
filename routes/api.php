@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployerJob;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
@@ -35,3 +36,6 @@ Route::middleware(['web'])->group(function () {
     });
 });
 Route::get('/popular-jobs',[JobController::class,'popularJobs']);
+Route::controller(EmployerJob::class)->group(function(){
+    Route::get('employer/my-jobs','index');
+});
