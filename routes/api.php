@@ -23,12 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resources([
-    'categories' => JobCategoryController::class,
-    'job' => JobController::class,
-    'resume' => resumeController::class
-]);
 
+Route::middleware(['web'])->group(function(){
+    Route::resources([
+        'categories' => JobCategoryController::class,
+        'job' => JobController::class,
+        'resume' => resumeController::class
+    ]);
+});
 Route::middleware(['web'])->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('/auth/login', 'login');

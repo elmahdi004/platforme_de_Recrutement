@@ -30,17 +30,16 @@ class resumeController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'file' => 'required|mimes:pdf,doc,docs'
-        // ]);
-        // $file = $request->file('file');
-        // $path = Storage::disk('resume')->put('',$file);
-        // $user = Auth::guard('candidates')->user()->id;
-        // Candidate::find($user)->update([
-        //     'cv' => basename($path)
-        // ]);
+        $request->validate([
+            'file' => 'required|mimes:pdf,doc,docs'
+        ]);
+        $file = $request->file('file');
+        $path = Storage::disk('resume')->put('',$file);
+        $user = Auth::guard('candidates')->user()->id;
+        Candidate::find($user)->update([
+            'cv' => basename($path)
+        ]);
         // return response(['path' => $path,'name' => basename($path)]);
-        return Auth::guard('candidates')->user();
     }
 
     /**
@@ -48,8 +47,8 @@ class resumeController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        
+}
 
     /**
      * Show the form for editing the specified resource.

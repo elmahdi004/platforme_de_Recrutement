@@ -48,5 +48,7 @@ class AuthController extends Controller
     }
     public function logout(){
         Auth::guard('employers')->logout();
+        Auth::guard('candidates')->logout();
+
     }
 }

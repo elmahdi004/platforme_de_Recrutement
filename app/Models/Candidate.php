@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Candidate extends Authenticatable
 {
     use HasFactory;
+    protected $guarded = [];
     public function jobs(){
         return $this->belongsToMany(Job::class,'applications');
     }
