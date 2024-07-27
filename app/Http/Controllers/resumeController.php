@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class resumeController extends Controller
 {
@@ -27,7 +30,17 @@ class resumeController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        // $request->validate([
+        //     'file' => 'required|mimes:pdf,doc,docs'
+        // ]);
+        // $file = $request->file('file');
+        // $path = Storage::disk('resume')->put('',$file);
+        // $user = Auth::guard('candidates')->user()->id;
+        // Candidate::find($user)->update([
+        //     'cv' => basename($path)
+        // ]);
+        // return response(['path' => $path,'name' => basename($path)]);
+        return Auth::guard('candidates')->user();
     }
 
     /**

@@ -15,6 +15,9 @@ class AuthController extends Controller
         if(Auth::guard('employers')->attempt($credentials)){
              $user = Auth::guard('employers')->user();
              return response()->json($user, 200);
+        }else if(Auth::guard('candidates')->attempt($credentials)){
+            $user = Auth::guard('candidates')->user();
+            return response()->json($user, 200);
         }
         return response("Email or passowrd is incorrect , please try again",404);
         // return $credentials;
@@ -38,6 +41,8 @@ class AuthController extends Controller
     public function getUser(){
         if(Auth::guard('employers')->check()){
                 return response(Auth::guard('employers')->user(),200);
+        }else if(Auth::guard('candidates')->check()){
+            return response(Auth::guard('candidates')->user(),200);
         }
         return response('there is no user login',404);
     }
