@@ -41,15 +41,18 @@
     </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import api from "../../../../axios";
 import { data } from "autoprefixer";
+import { useStore } from "../../../../pinia";
 const attachements = [
     { id: 1, type: "PDF", name: "attachement name 1" },
     { id: 2, type: "DOC", name: "attachement name 2" },
     { id: 3, type: "DOCX", name: "attachement name 3" },
 ];
 const cv = ref();
+const user = ref();
+const store = useStore();
 const test = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
@@ -60,6 +63,10 @@ const test = (event) => {
         },
     }).then(({ data }) => {
         console.log(data);
+    });
+    onMounted(()=>{
+        store.getUserAction();
+        user.data = store.user;
     });
     // console.log()
 };
