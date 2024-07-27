@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployerJob;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\resumeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resources([
     'categories' => JobCategoryController::class,
     'job' => JobController::class,
+    'resume' => resumeController::class
 ]);
 
 Route::middleware(['web'])->group(function () {
