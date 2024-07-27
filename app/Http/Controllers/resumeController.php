@@ -34,10 +34,11 @@ class resumeController extends Controller
             'file' => 'required|mimes:pdf,doc,docs'
         ]);
         $file = $request->file('file');
-        $path = Storage::disk('resume')->put('',$file);
+        $path = Storage::putFileAs('resume',$file,$file->getClientOriginalName());
         $user = Auth::guard('candidates')->user()->id;
         Candidate::find($user)->update([
-            'cv' => basename($path)
+            'cv' => $file->getClientOriginalName(),
+            'extension' =>$file->getClientOriginalExtension()
         ]);
         // return response(['path' => $path,'name' => basename($path)]);
     }

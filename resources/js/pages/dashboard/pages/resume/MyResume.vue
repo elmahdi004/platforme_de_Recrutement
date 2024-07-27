@@ -4,15 +4,14 @@
         <h1 class="font-semibold text-lg mt-7 mb-10">CV Attachment</h1>
         <div
             class="attachement flex items-center w-fit my-4"
-            v-for="attachement in attachements"
-            :key="attachement.id"
+            v-if="user && (user.cv && user.extension)"
         >
             <div
                 class="flex bg-orange-100 text-orange-400 px-3 py-2 items-center rounded-lg"
             >
                 <div class="content flex flex-col">
-                    <p>{{ attachement.name }}</p>
-                    <p class="font-semibold">{{ attachement.type }}</p>
+                    <p>{{ user.cv }}</p>
+                    <p class="font-semibold">{{ user.extension.toUpperCase() }}</p>
                 </div>
                 <i class="fa-regular fa-file-lines ps-5 text-2xl"></i>
             </div>
@@ -21,6 +20,9 @@
             >
                 <i class="fa-solid fa-xmark"></i>
             </div>
+        </div>
+        <div v-else>
+            <span>Please Upload Your Resume</span>
         </div>
         <div
             class="w-[100px] h-[50px] bg-orange-100 text-orange-400 rounded-lg relative mt-5 cursor-pointer"
@@ -45,14 +47,9 @@ import { onMounted, ref } from "vue";
 import api from "../../../../axios";
 import { data } from "autoprefixer";
 import { useStore } from "../../../../pinia";
-const attachements = [
-    { id: 1, type: "PDF", name: "attachement name 1" },
-    { id: 2, type: "DOC", name: "attachement name 2" },
-    { id: 3, type: "DOCX", name: "attachement name 3" },
-];
+const attachements = { id: 1, type: "PDF", name: "attachement name 1" };
 const cv = ref();
 const user = ref();
-const store = useStore();
 const test = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
@@ -62,14 +59,20 @@ const test = (event) => {
             "Content-Type": "multipart/form-data",
         },
     }).then(({ data }) => {
-        console.log(data);
+        reload();
     });
-    onMounted(()=>{
-        store.getUserAction();
-        user.data = store.user;
-    });
+
     // console.log()
 };
+onMounted(() => {
+    reload();
+});
+const reload = ()=>{
+    const store = useStore();
+
+store.getUserAction();
+user.value = store.user;
+}
 </script>
 <style lang=""></style>
 <script setup></script>
