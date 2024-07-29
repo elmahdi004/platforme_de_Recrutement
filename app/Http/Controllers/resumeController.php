@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -70,8 +71,14 @@ class resumeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        $user = Auth::guard('candidates')->user()->id;
+        $oldResume = Candidate::find($user);
+        Storage::delete('resume/'.$oldResume->cv);
+        Candidate::find($user)->update([
+            'cv' => '',
+            'extension' => ''
+        ]);
     }
 }

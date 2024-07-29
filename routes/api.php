@@ -38,6 +38,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/auth/get-user-login', 'getUser');
         Route::get('/logout','logout');
     });
+    Route::delete('/resume/delete',[resumeController::class,'delete']);
 });
 Route::get('/popular-jobs',[JobController::class,'popularJobs']);
 Route::controller(EmployerJob::class)->group(function(){

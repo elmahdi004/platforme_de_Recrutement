@@ -4,18 +4,21 @@
         <h1 class="font-semibold text-lg mt-7 mb-10">CV Attachment</h1>
         <div
             class="attachement flex items-center w-fit my-4"
-            v-if="user && (user.cv && user.extension)"
+            v-if="user && user.cv && user.extension"
         >
             <div
                 class="flex bg-orange-100 text-orange-400 px-3 py-2 items-center rounded-lg"
             >
                 <div class="content flex flex-col">
                     <p>{{ user.cv }}</p>
-                    <p class="font-semibold">{{ user.extension.toUpperCase() }}</p>
+                    <p class="font-semibold">
+                        {{ user.extension.toUpperCase() }}
+                    </p>
                 </div>
                 <i class="fa-regular fa-file-lines ps-5 text-2xl"></i>
             </div>
             <div
+                @click="removeResume"
                 class="remove cursor-pointer ms-4 text-red-600 duration-100 hover:bg-red-600 hover:text-white hover:rounded-full w-[30px] h-[30px] flex items-center justify-center"
             >
                 <i class="fa-solid fa-xmark"></i>
@@ -47,7 +50,6 @@ import { onMounted, ref } from "vue";
 import api from "../../../../axios";
 import { data } from "autoprefixer";
 import { useStore } from "../../../../pinia";
-const attachements = { id: 1, type: "PDF", name: "attachement name 1" };
 const cv = ref();
 const user = ref();
 const test = (event) => {
@@ -67,11 +69,19 @@ const test = (event) => {
 onMounted(() => {
     reload();
 });
-const reload = ()=>{
+const reload = () => {
     const store = useStore();
 
-store.getUserAction();
-user.value = store.user;
+    store.getUserAction();
+    user.value = store.user;
+};
+const removeResume = () => {
+    user.value.cv = '';
+    user.value.extension = '';
+    api.delete("/resume/delete").then(({ data }) => console.log(data));
+};
+const downloadResume = ()=>{
+    
 }
 </script>
 <style lang=""></style>
