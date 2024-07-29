@@ -44,3 +44,4 @@ Route::get('/popular-jobs',[JobController::class,'popularJobs']);
 Route::controller(EmployerJob::class)->group(function(){
     Route::get('employer/{id}/my-jobs','index');
 });
+Route::get('/resume/download',[AuthController::class,'download']);

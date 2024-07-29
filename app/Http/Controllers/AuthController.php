@@ -51,4 +51,7 @@ class AuthController extends Controller
         Auth::guard('candidates')->logout();
 
     }
+    public function download(){
+        return response(['jola'=>'hoa'],201);
+    }
 }

@@ -7,7 +7,8 @@
             v-if="user && user.cv && user.extension"
         >
             <div
-                class="flex bg-orange-100 text-orange-400 px-3 py-2 items-center rounded-lg"
+                @click="downloadResume"
+                class="cursor-pointer flex bg-orange-100 text-orange-400 px-3 py-2 items-center rounded-lg"
             >
                 <div class="content flex flex-col">
                     <p>{{ user.cv }}</p>
@@ -76,13 +77,13 @@ const reload = () => {
     user.value = store.user;
 };
 const removeResume = () => {
-    user.value.cv = '';
-    user.value.extension = '';
+    user.value.cv = "";
+    user.value.extension = "";
     api.delete("/resume/delete").then(({ data }) => console.log(data));
 };
-const downloadResume = ()=>{
-    
-}
+const downloadResume = () => {
+    api.get("/resume/download").then(({ data }) => console.log(data));
+};
 </script>
 <style lang=""></style>
 <script setup></script>

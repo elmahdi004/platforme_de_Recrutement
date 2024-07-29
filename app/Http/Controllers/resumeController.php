@@ -81,4 +81,9 @@ class resumeController extends Controller
             'extension' => ''
         ]);
     }
+    public function download(){
+        // $user = Auth::guard('candidates')->user()->id;
+        // Storage::download('text.txt');
+        return response()->json(['message'=>'hola']);
+    }
 }
