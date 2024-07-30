@@ -52,6 +52,5 @@ class AuthController extends Controller
 
     }
     public function download(){
-        return response(['jola'=>'hoa'],201);
     }
 }
