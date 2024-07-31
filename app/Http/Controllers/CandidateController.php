@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -35,9 +36,8 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Candidate $candidate)
+    public function show($id)
     {
-        //
     }
 
     /**

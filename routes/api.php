@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EmployerJob;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
@@ -28,7 +29,8 @@ Route::middleware(['web'])->group(function(){
     Route::resources([
         'categories' => JobCategoryController::class,
         'job' => JobController::class,
-        'resume' => resumeController::class
+        'resume' => resumeController::class,
+        'candidate' => CandidateController::class
     ]);
 });
 Route::middleware(['web'])->group(function () {
